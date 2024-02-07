@@ -18,7 +18,7 @@ if ($_POST) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Modernize Free</title>
+  <title>Add Product</title>
   <link rel="shortcut icon" type="image/png" href="assets/images/logos/favicon.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/css/styles.min.css" />
@@ -29,40 +29,44 @@ if ($_POST) {
     <h1> Add Product</h1>
     <form>
       <div class="form-group">
-        <label >Name</label>
-        <input type="text" name="pro_titile" class="form-control m-2"  placeholder="Enter Name">
+        <label>Name</label>
+        <input type="text" name="pro_titile" class="form-control m-2" placeholder="Enter Name">
       </div>
       <div class="form-group">
-        <label >Details</label>
-        <textarea  class="form-control m-2" placeholder="Enter Product Detials"></textarea>
+        <label>Details</label>
+        <textarea class="form-control m-2" placeholder="Enter Product Detials"></textarea>
       </div>
       <div class="form-group">
-        <label >Price</label>
-        <input type="text" name="pro_price" class="form-control m-2"  placeholder="Enter Price">
+        <label>Price</label>
+        <input type="text" name="pro_price" class="form-control m-2" placeholder="Enter Price">
       </div>
       <div class="form-group">
         <label>Image</label>
         <input type="file" name="pro_image" class="form-control m-2">
       </div>
       <div class="form-group">
-        <label >Price</label>
-        <input type="text" name="pro_price" class="form-control m-2"  placeholder="Enter Price">
+        <label>Price</label>
+        <input type="text" name="pro_price" class="form-control m-2" placeholder="Enter Price">
       </div>
       <div class="form-group">
 
-        <label >Sub Category</label>
-        <select>
-        <?php
-        $q = mysqli_query($con,"select * from sub_cetegory")or die(mysqli_error($con));
-        while($r = mysqli_fetch_array($q))
-        {
-        ?>
-          <option value=""></option>
+        <label>Sub Category</label>
+        <select class="form-control m-2" name="sub_category">
+          <?php
+          $q = mysqli_query($con, "select * from sub_category") or die(mysqli_error($con));
+          while ($r = mysqli_fetch_array($q)) {
+            extract($r);
+          ?>
+            <option value="<?php echo $sub_cat_id;?>"><?php echo $sub_cat_name;?></option>
+          <?php
+          }
+          ?>
         </select>
       </div>
-      
-      
+
+      <div class="d-flex justify-content-center m-3">
       <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
     </form>
   </div>
 
