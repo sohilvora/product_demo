@@ -35,6 +35,7 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
+<?php include "include/navbar.php";?>
   <div class="container mt-5 col-lg-4">
     <h1> Add Product</h1>
     <form action="" method="POST" enctype="multipart/form-data">
