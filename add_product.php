@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
   if ($insertq) {
     $fileupload = move_uploaded_file($_FILES['pro_image']['tmp_name'], "image/" . $pro_image);
     if ($fileupload) {
-      echo "<script>alert('Product Added');</script>";
+      echo "<script>alert('Product Added');  window.location='display_product.php';</script>";
     } else {
       echo "<script>alert('Somethong wents wrong ');</script>";
     }

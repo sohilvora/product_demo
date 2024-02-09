@@ -9,7 +9,7 @@ if (isset($_POST['submit'])) {
   ('{$sub_cat_name}','{$sub_cat}','{$is_active}')") or die(mysqli_error($con));
 
   if ($insertq) {
-    echo "<script>alert('Sub Category Added');</script>";
+    echo "<script>alert('Sub Category Added');  window.location='index.php';</script>";
   } else {
     echo "<script>alert('Somethong wents wrong ');</script>";
   }

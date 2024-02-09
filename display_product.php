@@ -11,14 +11,40 @@
 </head>
 
 <body>
-    <?php include "include/navbar.php";?>
+    <?php include "include/navbar.php"; ?>
     <section style="background-color: #eee;">
         <div class="text-center container py-5">
+
             <h4 class="mt-4 mb-5"><strong>Products</strong></h4>
-            <div class="row">
+            <?php
+
+            require "dbconnect.php";
+            $subq = mysqli_query($con, "SELECT * FROM sub_category") or die(mysqli_error($con));
+            while ($subcatrow = mysqli_fetch_array($subq)) {
+                extract($subcatrow);
+                echo "|<a href='display_product.php?subcatid={$sub_cat_id}' class='p-2 text-dark fw-bolder'>{$sub_cat_name}</a>|";
+            }
+            ?>
+            <div class="row p-5">
                 <?php
-                require "dbconnect.php";
-                $q = mysqli_query($con, "SELECT * FROM product_master");
+                if (isset($_GET['subcatid'])) {
+                    $subcatid1 = $_GET['subcatid'];
+                    $q = mysqli_query($con, "SELECT * FROM product_master where sub_cat_id ='{$subcatid1}'") or die(mysqli_error($con,));
+                    $count = mysqli_num_rows($q);
+                    if ($count < 1) {
+                        echo  "No Records Found";
+                    }
+                } else if (isset($_GET['search'])) {
+                    $search = $_GET['search'];
+                    $q = mysqli_query($con, "SELECT * FROM product_master where pro_title like '%$search%'") or die(mysqli_error($con,));
+                } else if (isset($_GET['starting']) && isset($_GET['ending'])) {
+
+                    $starting = $_GET['starting'];
+                    $ending = $_GET['ending'];
+                    $q = mysqli_query($con, "SELECT * FROM product_master where pro_price between $starting and $ending") or die(mysqli_error($con,));
+                } else {
+                    $q = mysqli_query($con, "SELECT * FROM product_master") or die(mysqli_error($con,));
+                }
                 while ($r = mysqli_fetch_array($q)) {
                     extract($r);
                 ?>
@@ -50,7 +76,7 @@
             </div>
         </div>
     </section>
-    
+
 </body>
 <script src="assets/libs/jquery/dist/jquery.min.js"></script>
 <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
