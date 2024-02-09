@@ -37,12 +37,15 @@
                 Category
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <?php
+
+                require "include/dbconnect.php";
+                $subq = mysqli_query($con, "SELECT * FROM sub_category") or die(mysqli_error($con));
+                while ($subcatrow = mysqli_fetch_array($subq)) {
+                  extract($subcatrow);
+                  echo "<li><a href='./display_product.php?subcatid={$sub_cat_id}' class='nav-link fw-bolder'>{$sub_cat_name}</a></li>";
+                }
+                ?>
               </ul>
             </li>
             <li>

@@ -1,5 +1,5 @@
 <?php
-require "dbconnect.php";
+require "include/dbconnect.php";
 if (isset($_POST['submit'])) {
   $sub_cat_name = mysqli_real_escape_string($con, $_POST['sub_cat_name']);
   $sub_cat = mysqli_real_escape_string($con, $_POST['sub_cat']);

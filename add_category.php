@@ -1,5 +1,5 @@
 <?php
-require "dbconnect.php";
+require "include/dbconnect.php";
 if (isset($_POST['submit'])) {
   $cat_name = mysqli_real_escape_string($con, $_POST['cat_name']);
   $is_active = mysqli_real_escape_string($con, $_POST['is_active']);

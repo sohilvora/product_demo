@@ -18,7 +18,7 @@
             <h4 class="mt-4 mb-5"><strong>Products</strong></h4>
             <?php
 
-            require "dbconnect.php";
+            require "include/dbconnect.php";
             $subq = mysqli_query($con, "SELECT * FROM sub_category") or die(mysqli_error($con));
             while ($subcatrow = mysqli_fetch_array($subq)) {
                 extract($subcatrow);
