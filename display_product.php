@@ -61,9 +61,9 @@
                                 </a>
                             </div>
                             <div class="card-body">
-                                <a href="" class="text-reset">
-                                    <h5 class="card-title mb-3"><?= $pro_title ?></h5>
-                                </a>
+                                
+                                    <a href="detail_product.php?pid=<?php echo $pro_id?>" class="card-title mb-3 fw-bolder"><?= $pro_title ?></a>
+                                
                                 <h5 class="card-title mb-3"><?= $pro_detail ?></h5>
                                 <p>Category</p>
                                 <h6 class="mb-3"><?php echo "₹ " . $pro_price; ?></h6>
