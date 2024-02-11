@@ -65,6 +65,10 @@
             <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search" required>
             <button class="btn btn-outline-success" type="submit">search</button>
           </form>
+          <ul class="navbar-nav me-4 ms-3">
+          <li class="nav-item">
+              <a class="nav-link" href="./view_cart.php">Cart</a>
+            </li></ul>
         </div>
       </div>
     </nav>

@@ -1,7 +1,7 @@
 <?php
 require "include/dbconnect.php";
 $pid = $_GET['pid'];
-$detailq = mysqli_query($con, "SELECT * FROM product_master where pro_id = {$pid}") or die(mysqli_error($con,));
+$detailq = mysqli_query($con, "SELECT * FROM product_master where pro_id = {$pid}") or die(mysqli_error($con));
 $count = mysqli_num_rows($detailq);
 if ($count < 1) {
     header("location=display_product.php");
@@ -9,7 +9,7 @@ if ($count < 1) {
 $r = mysqli_fetch_array($detailq);
 extract($r);
 
-$subcatq = mysqli_query($con,"select sub_cat_name from sub_category where sub_cat_id = '{$sub_cat_id}' ") or die(mysqli_error($con,));
+$subcatq = mysqli_query($con, "select sub_cat_name from sub_category where sub_cat_id = {$sub_cat_id} ") or die(mysqli_error($con));
 $subcat = mysqli_fetch_array($subcatq);
 extract($subcat);
 ?>
@@ -24,7 +24,7 @@ extract($subcat);
     <title>Home Page</title>
     <link rel="shortcut icon" type="image/png" href="assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/styles.min.css" />
+    <!-- <link rel="stylesheet" href="assets/css/styles.min.css" /> -->
 </head>
 <header>
     <?php include "include/navbar.php"; ?>
@@ -80,7 +80,7 @@ extract($subcat);
                     </p>
 
                     <p>
-                        <?= "Sub Category :".$sub_cat_name; ?>
+                        <?= "Sub Category :" . $sub_cat_name; ?>
                     </p>
                     <hr />
                     <div class="row mb-4">
@@ -88,25 +88,30 @@ extract($subcat);
                         <div class="col-md-4 col-6 mb-3">
                             <label class="mb-2 d-block">Quantity</label>
                             <div class="input-group mb-3" style="width: 170px;">
-                                <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon1" data-mdb-ripple-color="dark">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <input type="text" class="form-control text-center border border-secondary" placeholder="14" aria-label="Example text with button addon" aria-describedby="button-addon1" />
-                                <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon2" data-mdb-ripple-color="dark">
-                                    <i class="fas fa-plus"></i>
-                                </button>
+                                <form action="cart_process.php" method="GET">
+                                    <select class="form-control" name="qty">
+                                        <?php
+                                        $i = 1;
+                                        while ($i != 6) {
+
+                                            echo "<option class='form-control text-center border border-secondary' value='$i'>$i</option>";
+                                            $i++;
+                                        } ?>
+                                    </select>
+                                    <div class="row">
+                                    <input type="hidden" name="pid" value="<?= $pid;?>">
+                                    <button type="submit" class="btn btn-warning shadow-0 my-3"> Add to cart </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    <a href="#" class="btn btn-warning shadow-0"> Buy now </a>
-                    <a href="#" class="btn btn-primary shadow-0"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </a>
                 </div>
             </main>
         </div>
     </div>
 </section>
 <!-- content -->
-
 
 <!-- Footer -->
 <footer class="text-center text-lg-start text-muted bg-primary mt-3 fixed-bottom">
