@@ -1,5 +1,9 @@
 <?php
 require "include/dbconnect.php";
+session_start();
+if (!isset($_SESSION['user_email'])) {
+  header("location:login.php");
+}
 if (isset($_POST['submit'])) {
   $sub_cat_name = mysqli_real_escape_string($con, $_POST['sub_cat_name']);
   $sub_cat = mysqli_real_escape_string($con, $_POST['sub_cat']);

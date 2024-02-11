@@ -1,5 +1,9 @@
 <?php
 require "include/dbconnect.php";
+session_start();
+if (!isset($_SESSION['user_email'])) {
+  header("location:login.php");
+}
 if (isset($_POST['submit'])) {
   $pro_title = mysqli_real_escape_string($con, $_POST['pro_title']);
   $pro_detail = mysqli_real_escape_string($con, $_POST['pro_detail']);
@@ -14,7 +18,8 @@ if (isset($_POST['submit'])) {
   if ($insertq) {
     $fileupload = move_uploaded_file($_FILES['pro_image']['tmp_name'], "image/" . $pro_image);
     if ($fileupload) {
-      echo "<script>alert('Product Added');  window.location='display_product.php';</script>";
+      echo "<script>alert('Pr
+      oduct Added');  window.location='display_product.php';</script>";
     } else {
       echo "<script>alert('Somethong wents wrong ');</script>";
     }

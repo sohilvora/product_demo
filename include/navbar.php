@@ -48,27 +48,26 @@
                 ?>
               </ul>
             </li>
-            <li>
-              <form class="form-control" action="./display_product.php" method="GET">
-                <label>Starting Range</label>
-                <input type="number" name="starting" required>
-
-                <label>Ending Range</label>
-                <input type="number" name="ending" required>
-
-                <button type="submit" class="btn btn-outline-success">Search</button>
-              </form>
-
-            </li>
           </ul>
           <form class="d-flex" action="./display_product.php" method="GET">
             <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search" required>
             <button class="btn btn-outline-success" type="submit">search</button>
           </form>
           <ul class="navbar-nav me-4 ms-3">
-          <li class="nav-item">
-              <a class="nav-link" href="./view_cart.php">Cart</a>
-            </li></ul>
+            <li class="nav-item">
+              <a class="nav-link bg-success text-light btn m-2" href="./view_cart.php">Cart</a>
+            </li>
+            <?php if (isset($_SESSION['user_email'])) { ?>
+              <li class="nav-item">
+                <a class="nav-link bg-danger text-light btn m-2" href="./logout.php">Logout</a>
+              </li>
+            <?php } else { ?>
+              <li class="nav-item">
+                <a class=" nav-link bg-primary text-light btn m-2" href="./login.php">Login</a>
+              </li>
+            <?php
+            } ?>
+          </ul>
         </div>
       </div>
     </nav>

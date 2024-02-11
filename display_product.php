@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,6 +29,16 @@
                 echo "|<a href='display_product.php?subcatid={$sub_cat_id}' class='p-2 text-dark fw-bolder'>{$sub_cat_name}</a>|";
             }
             ?>
+            <form class="form-control bg-light mt-3" action="" method="GET">
+                <label>Starting Range</label>
+                <input type="number" class="form-group mx-3" name="starting" required>
+
+                <label>Ending Range</label>
+                <input type="number" class="form-group mx-3" name="ending" required>
+
+                <button type="submit" class="btn btn-success mx-3">Search</button>
+            </form>
+
             <div class="row p-5">
                 <?php
                 if (isset($_GET['subcatid'])) {
@@ -61,9 +75,9 @@
                                 </a>
                             </div>
                             <div class="card-body">
-                                
-                                    <a href="detail_product.php?pid=<?php echo $pro_id?>" class="card-title mb-3 fw-bolder"><?= $pro_title ?></a>
-                                
+
+                                <a href="detail_product.php?pid=<?php echo $pro_id ?>" class="card-title mb-3 fw-bolder"><?= $pro_title ?></a>
+
                                 <h5 class="card-title mb-3"><?= $pro_detail ?></h5>
                                 <p>Category</p>
                                 <h6 class="mb-3"><?php echo "₹ " . $pro_price; ?></h6>
